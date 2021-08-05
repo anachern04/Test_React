@@ -1,0 +1,46 @@
+.red {
+	color: rgb(175, 9, 9);
+}
+
+.comment {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 50px;
+	font-family: sans-serif;
+}
+.commentTitle {
+	font-size: 28px;
+}
+.commentAutor {
+	margin-bottom: 20px;
+}
+
+.commentAutor label {
+	margin-right: 20px;
+}
+
+.comment input {
+	width: 200px;
+}
+
+.commentButton {
+	width: 200px;
+	height: 38px;
+	background: #4caf50;
+	border-radius: 12px;
+	color: #fff;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	font-size: 16px;
+	margin-top: 20px;
+}
+
+.commentButton:hover {
+	background: #fff;
+	color: #000;
+	border: 1px solid #4caf50;
+}
+
+.commentButton:active {
+	box-shadow: none;
+}
