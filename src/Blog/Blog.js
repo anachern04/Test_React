@@ -7,18 +7,40 @@ export default class Blog extends React.Component {
 		this.state = {
 		  error: null,
 		  isLoaded: false,
-		  items: []
+		  items: [],
+		  currentPage: 1,
 		};
-	 }
+	 };
 
-	 componentDidMount {
+	 componentDidMount() {
+		this.loadComments();
+	}
+
+	handleLoadMore = e => {
+ e.preventDefault();
+ this.loadComments();
+};
+
+	loadComments () {
+		 fetch(`https://jordan.ashton.fashion/api/goods/30/comments?page=${this.state.currentPage++}`)
+			  .then(response => response.json())
+			  .then(res => this.setState({
+					isLoaded: true,
+				  items: this.state.items.concat(res.data)
+			  }), error => {
+					this.setState({
+						 isLoaded: true,
+						 error
+					});
+			  });
+
 		 fetch("https://jordan.ashton.fashion/api/goods/30/comments")
 		 .then (res => res.json())
 		 .then (
 			 (result) => {
 				 this.setState ({
 					 isLoaded: true,
-					 items: result.current_page
+					 items: result.data
 				 });
 			 },
 			 (error) => {
@@ -26,9 +48,10 @@ export default class Blog extends React.Component {
 					 isLoaded: true,
 					 error
 				 });
-			 }
-		 )
-		}
+			 });
+		};
+
+	
 		 render() {
 			 const {error, isLoaded, items} = this.state;
 			 if (error) {
@@ -37,15 +60,24 @@ export default class Blog extends React.Component {
 				return <p>Loading... </p>
 			 } else {
 				 return (
-					 <ul>
-						 {items.map(item => (
-							 <li key={item.name}>
-								 <h5>{item.name}</h5>
-								 <p> {item.text} </p>
-							 </li>
-						 ))}
-					 </ul>
-				 )
+					 <div  className="Blog">
+						 <ul>
+						{items.map(item => (
+							<li key={item.id}>
+								<h5>{item.name}</h5>
+								<p> {item.text} </p>
+							</li>
+					 ))}
+				 		</ul>
+						 <button className="commentButton"
+                            onClick={this.handleLoadMore}>
+                        Показать еще
+                    </button>
+				 	</div>
+
+					
+				 )  
+				
 			 }
 	 }
 }

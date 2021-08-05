@@ -1,0 +1,28 @@
+.Blog {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.Blog ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.Blog li {
+	width: 400px;
+	max-height: 300px;
+	padding: 8px;
+	border: 1px solid rgb(100, 100, 79);
+	margin-bottom: 10px;
+	white-space: pre-wrap;
+	text-align: left;
+	word-wrap: break-word;
+}
+
+.Blog li h5 {
+	padding-bottom: 5px;
+	border-bottom: 1px solid rgb(100, 100, 79);
+}

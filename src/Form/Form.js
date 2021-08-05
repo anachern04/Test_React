@@ -5,27 +5,32 @@ export class Form extends Component {
 	state = {
 		autorName: '',
 		comment: ''
-	}
+	};
+
 	handleAutorNameChange = e => {
 		this.setState({
 			autorName: e.target.value
 		})
-	}
+	};
+
 	handleCommentChange = e => {
 		this.setState({
 			comment: e.target.value
 		})
-	}
-	handleClick () {
+	};
+
+	handleClick = e => {
+		e.preventDefault();
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ name: '', text: '' })
+			body: JSON.stringify({ name:this.state.autorName, text: this.state.comment })
 	  }
 	  fetch('https://jordan.ashton.fashion/api/goods/30/comments', requestOptions)
 			.then(response => response.json())
 			.then(data => this.setState({ postId: data.id }));
-	}
+	};
+	
 	render() {
 		return (
 			<form className="comment">
